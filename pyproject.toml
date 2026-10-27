@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flo-cltv"
+version = "1.0.0"
+description = "Customer lifetime value analysis with BG/NBD and Gamma-Gamma models"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "lifetimes==0.11.3",
+    "numpy>=1.23,<3",
+    "pandas>=2.0,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3,<9",
+    "ruff>=0.11,<1",
+]
+
+[project.scripts]
+flo-cltv = "flo_cltv.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "UP"]
